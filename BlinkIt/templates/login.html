@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Popup</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5); /* Background blur effect */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background: white;
+            padding: 20px;
+            width: 350px;
+            border-radius: 12px;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Close Button */
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            font-size: 20px;
+            cursor: pointer;
+            color: gray;
+        }
+
+        .close-btn:hover {
+            color: black;
+        }
+
+        /* Logo */
+        .logo {
+            background: yellow;
+            color: black;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        /* Input Container */
+        .input-container {
+            display: flex;
+            align-items: center;
+            border: 1px solid gray;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+
+        .country-code {
+            padding: 10px;
+            background: #f1f1f1;
+        }
+
+        .input-container input {
+            border: none;
+            padding: 10px;
+            width: 100%;
+            outline: none;
+        }
+
+        /* Continue Button */
+        .continue-btn {
+            background: gray;
+            color: white;
+            padding: 12px;
+            border: none;
+            width: 100%;
+            border-radius: 8px;
+            cursor: not-allowed;
+        }
+
+        /* Terms */
+        .terms {
+            font-size: 12px;
+            color: gray;
+            margin-top: 10px;
+        }
+
+        .terms a {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Login Popup Modal -->
+    <div id="loginModal" class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&larr;</span>
+        <div class="logo">blinkit</div>
+        <h2>India's last minute app</h2>
+        <p>Log in or Sign up</p>
+
+        <!-- Mobile Input -->
+        <div class="input-container">
+            <span class="country-code">+91</span>
+            <input type="text" placeholder="Enter mobile number">
+        </div>
+
+        <!-- Continue Button -->
+        <button class="continue-btn">Continue</button>
+
+        <!-- Terms & Policy -->
+        <p class="terms">
+            By continuing, you agree to our <a href="#">Terms of service</a> & <a href="#">Privacy policy</a>
+        </p>
+    </div>
+
+    <script>
+        function closeModal() {
+            window.location.href = "index.html"; // Redirect to index.html
+        }
+    </script>
+    
+
+</body>
+</html>
