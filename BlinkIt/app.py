@@ -10,6 +10,10 @@ def home():
 def product():
     return render_template('product.html')
 
+@app.route('/cart.html')
+def cart():
+    return render_template('cart.html')
+
 if __name__ == "__main__":
     app.run(debug=True)  # Run the Flask app
 
