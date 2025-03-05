@@ -133,7 +133,7 @@
 
             <!-- Button Section (Well-Aligned) -->
             <div class="button-container">
-                <button class="btn btn-add-cart">🛒 Add to Cart</button>
+                <button class="btn btn-add-cart" id="add-to-cart">🛒 Add to Cart</button>
                 <button class="btn btn-buy-now">⚡ Buy Now</button>
             </div>
         </div>
@@ -160,6 +160,29 @@
         // Display price with original strikethrough & highlighted discounted price
         document.getElementById("original-price").innerText = originalPrice ? originalPrice : "";
         document.getElementById("discounted-price").innerText = finalPrice;
+
+        // Add to Cart button functionality
+        document.getElementById("add-to-cart").addEventListener("click", function() {
+            // Create product object
+            const product = {
+                name: name,
+                weight: weight,
+                price: finalPrice,
+                image: image
+            };
+
+            // Retrieve cart from localStorage, or initialize as empty array
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            // Add the product to the cart
+            cart.push(product);
+
+            // Save the updated cart back to localStorage
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            // Redirect to cart page
+            window.location.href = "cart.html";
+        });
     </script>
 
 </body>
