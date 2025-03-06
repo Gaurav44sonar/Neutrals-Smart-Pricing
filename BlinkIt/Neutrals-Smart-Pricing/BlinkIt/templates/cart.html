@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Page Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .cart-container {
+            width: 90%;
+            max-width: 1200px;
+            background: white;
+            padding: 40px;
+            margin: 20px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 28px;
+        }
+
+        .cart-items {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            margin: 10px 0;
+            background: #fafafa;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-item img {
+            width: 80px;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .cart-item-details {
+            flex: 1;
+            margin-left: 20px;
+        }
+
+        .remove-btn {
+            padding: 10px 15px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .remove-btn:hover {
+            background: #c0392b;
+        }
+
+        .total-price {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cart-container">
+        <h1>Your Cart</h1>
+        <ul id="cart-items" class="cart-items">
+            <!-- Cart items will be listed here -->
+        </ul>
+
+        <div class="total-price">
+            Total: ₹<span id="total-price">0</span>
+        </div>
+        <button onclick="checkout()" class="remove-btn" style="width: 100%;">Proceed to Checkout</button>
+    </div>
+
+    <script>
+        // Function to load cart items from localStorage and display them
+        function loadCart() {
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const cartItemsContainer = document.getElementById("cart-items");
+            const totalPriceElement = document.getElementById("total-price");
+
+            // Clear current cart items
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+
+            // Loop through each cart item and display it
+            cart.forEach((item, index) => {
+                const cartItem = document.createElement("li");
+                cartItem.classList.add("cart-item");
+
+                // Create HTML for each cart item
+                cartItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="cart-item-details">
+                        <p><strong>${item.name}</strong></p>
+                        <p>Weight: ${item.weight}</p>
+                        <p>Price: ₹${item.price}</p>
+                    </div>
+                    <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
+                `;
+                cartItemsContainer.appendChild(cartItem);
+
+                // Update total price
+                total += parseFloat(item.price.replace('₹', ''));
+            });
+
+            // Update total price on the page
+            totalPriceElement.textContent = total.toFixed(2);
+        }
+
+        // Function to remove item from the cart
+        function removeFromCart(index) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.splice(index, 1); // Remove the item at the given index
+            localStorage.setItem("cart", JSON.stringify(cart)); // Update localStorage
+            loadCart(); // Reload the cart
+        }
+
+        // Function to proceed to checkout (you can modify this for your needs)
+        function checkout() {
+            alert("Proceeding to checkout...");
+            // You can redirect to a checkout page or handle it here
+        }
+
+        // Load cart items on page load
+        window.onload = loadCart;
+    </script>
+
+</body>
+</html>

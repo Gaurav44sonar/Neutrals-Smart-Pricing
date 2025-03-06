@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8f9fa;
+            text-align: center;
+        }
+
+        h2 {
+            margin-top: 20px;
+            color: #333;
+            font-size: 28px;
+        }
+
+        /* Search Bar */
+        .search-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 30px;
+            padding: 12px;
+            width: 60%;
+            margin: 20px auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-container input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 18px;
+            border-radius: 20px;
+        }
+
+        .search-container button {
+            border: none;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 10px 15px;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        .search-container button:hover {
+            background: #0056b3;
+        }
+
+        /* Results Container */
+        #results {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Product Card */
+        .product-card {
+            background: white;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 10px;
+            width: 280px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            text-align: left;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        .product-card h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .product-card p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .search-container {
+                width: 90%;
+            }
+
+            .product-card {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>🔍 Search Results</h2>
+
+    <!-- Search Bar (Prefill with query) -->
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search again..." onkeypress="handleKeyPress(event)">
+        <button onclick="searchProducts()">🔍</button>
+    </div>
+
+    <!-- Results Container -->
+    <div id="results"></div>
+
+    <script>
+        // Extract query from URL
+        function getQueryParameter(name) {
+            let params = new URLSearchParams(window.location.search);
+            return params.get(name);
+        }
+
+        // Auto-fill search input
+        document.getElementById("searchInput").value = getQueryParameter("query") || "";
+
+        // Fetch products from Flask backend
+        function searchProducts() {
+            let query = document.getElementById("searchInput").value.trim();
+            if (!query) {
+                alert("Please enter a search term.");
+                return;
+            }
+
+            fetch(`/search?query=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    let resultsContainer = document.getElementById("results");
+                    resultsContainer.innerHTML = ""; // Clear previous results
+
+                    if (data.length === 0) {
+                        resultsContainer.innerHTML = "<p>No products found.</p>";
+                        return;
+                    }
+
+                    data.forEach(product => {
+                        let card = `
+                            <div class="product-card">
+                                <h3>${product.ProductName}</h3>
+                                <p><strong>Base Price:</strong> <span class="highlight">₹${product.BasePrice}</span></p>
+                                
+                                <p><strong>Optimized Price:</strong> <span class="highlight">₹${product.OptimizedPrice}</span></p>
+                               
+                            </div>
+                        `;
+                        resultsContainer.innerHTML += card;
+                    });
+                })
+                .catch(error => console.error("Error fetching products:", error));
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                searchProducts();
+            }
+        }
+
+        // Run search automatically on page load
+        window.onload = () => {
+            if (getQueryParameter("query")) {
+                searchProducts();
+            }
+        };
+    </script>
+
+</body>
+
+</html>
