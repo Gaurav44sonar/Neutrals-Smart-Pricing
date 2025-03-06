@@ -64,8 +64,10 @@
                     document.getElementById("demand").innerText = `Demand: ${product.Demand || 1}`;
                     document.getElementById("expiry").innerText = `Expiry: ${product.Expiry || 16} days`;
                     document.getElementById("supply").innerText = `Supply: ${product.Supply || "N/A"}`;
-                    document.getElementById("original-price").innerText = `₹${product.OriginalPrice || 114}`;
                     document.getElementById("optimized-price").innerText = `Optimized Price: ₹${product.OptimizedPrice || 112}`;
+                    document.getElementById("discounted-price").innerText = `₹${product.OptimizedPrice || 112}`;
+                    document.getElementById("original-price").innerText = `₹${product.BasePrice || 114}`;
+                    
                 } else {
                     document.querySelector(".product-container").innerHTML = "<h2>Product Not Found</h2>";
                 }
@@ -121,6 +123,7 @@
             <div class="price-container">
                 <span class="original-price" id="original-price"></span>
                 <span class="discounted-price" id="discounted-price"></span>
+               
             </div>
 
             <div class="extra-info">

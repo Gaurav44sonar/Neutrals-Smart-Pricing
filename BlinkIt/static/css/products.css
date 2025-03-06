@@ -66,18 +66,20 @@ p {
     align-items: center;
     gap: 15px;
 }
-
-.original-price {
+.original-price  {
     text-decoration: line-through;
     font-size: 18px;
     color: #a0a0a0;
+    
 }
-
 .discounted-price {
+    
     color: #ff5733;
     font-size: 28px;
     font-weight: bold;
 }
+
+
 
 /* Extra Info */
 .extra-info p {
