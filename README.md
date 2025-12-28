@@ -1,150 +1,140 @@
-Neutrals-Smart-Pricing
+# Neutrals-Smart-Pricing
 
 Neutrals-Smart-Pricing is an AI-driven smart dynamic pricing system inspired by quick-commerce platforms like Blinkit.
 The system intelligently predicts optimized product prices by analyzing demand, supply, competitor prices, and product expiry, ensuring fair pricing for both customers and sellers.
 
 This project also includes image-based product search, allowing users to search products simply by uploading an image.
 
-🚀 What Problem Does It Solve?
+## 1. What Problem Does It Solve?
 
-Static pricing fails in fast-moving e-commerce environments
+  1. Static pricing fails in fast-moving e-commerce environments
 
-Perishable goods need expiry-aware pricing
+  2. Perishable goods need expiry-aware pricing
 
-Customers want competitive and fair prices
+  3. Customers want competitive and fair prices
 
-Searching products using text is slow and inconvenient
+  4. Searching products using text is slow and inconvenient
 
-Neutrals-Smart-Pricing solves these using AI + Machine Learning.
+  Neutrals-Smart-Pricing solves these using AI + Machine Learning.
 
-✨ Key Features
-🔹 Smart Dynamic Pricing (ML-Based)
+## 2. Key Features
+  ### 1. Smart Dynamic Pricing (ML-Based)
 
-Predicts optimized product price dynamically
+  Predicts optimized product price dynamically
 
-Considers:
+  Considers:
 
-Base Price
+  Base Price
 
-Competitor Price
+  Competitor Price
 
-Demand level
+  Demand level
 
-Supply level
+  Supply level
 
-Expiry days
+  Expiry days
 
-🔹 Demand & Supply Intelligence
+  ### 2. Demand & Supply Intelligence
 
-Products are classified as:
+  Products are classified as:
 
-Low (0)
+  Low (0)
 
-Medium (1)
+  Medium (1)
 
-High (2)
+  High (2)
 
-Helps identify:
+  Helps identify:
 
-Most demanded products
+  Most demanded products
 
-Overstocked products
+  Overstocked products
 
-Balanced inventory items
+  Balanced inventory items
 
-🔹 Image-Based Product Search (AI)
+  ### 3. Image-Based Product Search (AI)
 
-User uploads a product image
+  User uploads a product image
 
-AI matches image with product catalog
+  AI matches image with product catalog
 
-Displays best matching product card
+  Displays best matching product card
 
-No manual typing required
+  No manual typing required
 
-🔹 Firebase Integration
+  ### 4. Firebase Integration
 
-Real-time product data storage
+  Real-time product data storage
 
-Stores:
+  Stores:
 
-Product details
+  Product details
 
-Demand & supply values
+  Demand & supply values
 
-Optimized price
+  Optimized price
 
-Updates optimized price back to database
+  Updates optimized price back to database
 
-🔹 Real-Time Price Optimization
+  ### 5. Real-Time Price Optimization
 
-Prices automatically adjust when:
+  Prices automatically adjust when:
 
-Demand changes
+  Demand changes
 
-Supply changes
+  Supply changes
 
-Expiry date approaches
+  Expiry date approaches
 
-Optimized price stored with 2-decimal precision
+  Optimized price stored with 2-decimal precision
 
-🧠 Machine Learning Approach
-Model Used
+## 6. Machine Learning Approach
+  ### 1. Model Used
 
-XGBoost Regressor
+  XGBoost Regressor
 
-Input Features
+  ### 2. Input Features
 
-Base Price
+  1. Base Price
 
-Competitor Price
+  2. Competitor Price
 
-Demand (0/1/2)
+  3. Demand (0/1/2)
 
-Supply (0/1/2)
+  4. Supply (0/1/2)
 
-Expiry Days
+  5. Expiry Days
 
-Output
+  ### 3. Output
 
-Optimized Price
+  Optimized Price
 
-The model learns real-world pricing behavior and avoids large price jumps, keeping prices realistic and market-friendly.
+  The model learns real-world pricing behavior and avoids large price jumps, keeping prices realistic and market-friendly.
 
-🖼️ Image Search Intelligence
+##  7. Image Search Intelligence
 
-Uses CLIP (Contrastive Language-Image Pretraining)
+  Uses CLIP (Contrastive Language-Image Pretraining)
 
-Converts:
+  Converts:
 
-Product images → embeddings
+  Product images → embeddings
 
-Product names → embeddings
+  Product names → embeddings
 
-Finds the best match using cosine similarity
+  Finds the best match using cosine similarity
 
-Enables visual product search
+  Enables visual product search
 
-📊 Use Cases
+##   8. Use Cases
 
-Quick-commerce platforms
+  1. Quick-commerce platforms
 
-Grocery delivery apps
+  2. Grocery delivery apps
 
-Inventory-heavy businesses
+  3. Inventory-heavy businesses
 
-Perishable goods pricing
+  4. Perishable goods pricing
 
-AI-based retail analytics
+  5. AI-based retail analytics
 
-🔮 Future Enhancements
 
-Live competitor price scraping
-
-Reinforcement learning for pricing
-
-Customer behavior-based pricing
-
-Admin analytics dashboard
-
-Mobile application integration
